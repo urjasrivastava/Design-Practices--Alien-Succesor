@@ -7,6 +7,13 @@ void succ_alien(string &n, string B)
     int len = n.size(), i = len - 1;
     if (len == 0 or base == 0)
         return;
+    
+    map<char,int> alien_to_decimal;
+    for(char c:B)
+    {
+        alien_to_decimal[c]=j++;
+    }
+
     // increment from the right
     while (i >= 0 && n[i] == B[base])
     {
@@ -19,15 +26,7 @@ void succ_alien(string &n, string B)
     }
     else
     {
-        int index;
-        for (; j <= base; j++)
-        {
-            if (B[j] == n[i])
-            {
-                index = j;
-                break;
-            }
-        }
+        int index = alien_to_decimal[n[i]];        
         n[i] = B[index + 1];
     }
 }
